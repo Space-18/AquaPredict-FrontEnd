@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'sweetalert2/dist/sweetalert2.min.css';
+@import 'bootstrap/scss/bootstrap';
+
+// Optional: Customize Swal styling
+.swal2-container {
+  z-index: 99999;
+}
+
+.swal2-popup {
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.16);
+}
