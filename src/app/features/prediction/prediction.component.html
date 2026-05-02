@@ -1,0 +1,122 @@
+<div>
+  <div class="mb-6">
+    <h1 class="text-3xl font-semibold text-gray-800">Módulo de Predicción</h1>
+    <p class="text-gray-600 mt-1">Genera predicciones de consumo usando XGBoost</p>
+  </div>
+
+  <div class="bg-gradient-to-r from-[#0077B6] to-[#048ABF] rounded-xl shadow-md p-6 mb-6 text-white">
+    <div class="flex items-start gap-4">
+      <div class="bg-white/20 p-3 rounded-lg">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Predicción con Inteligencia Artificial</h3>
+        <p class="text-sm opacity-90">
+          Nuestro modelo XGBoost analiza patrones históricos de temperatura, población y consumo de agua para generar predicciones precisas del consumo futuro en Ventanilla.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-md p-8 mb-6 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h3 class="text-2xl font-semibold text-gray-800 mb-4">Generar Nueva Predicción</h3>
+      <p class="text-gray-600 mb-6">El modelo utilizará los últimos datos registrados para predecir el consumo de agua del próximo mes</p>
+      <button
+        (click)="handleGenerate()"
+        [disabled]="isGenerating"
+        [ngClass]="['px-8 py-4 rounded-lg text-white transition-all transform text-lg shadow-lg flex items-center gap-3 mx-auto', isGenerating ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#2ECC71] hover:bg-[#27AE60] hover:scale-105']"
+      >
+        <div *ngIf="isGenerating" class="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+        <svg *ngIf="!isGenerating" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+        </svg>
+        <span>{{isGenerating ? 'Generando predicción...' : 'Generar Predicción'}}</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="showResults" class="space-y-6">
+    <div class="bg-green-50 border-l-4 border-[#2ECC71] p-4 rounded-lg">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-[#2ECC71] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <h3 class="font-semibold text-[#2ECC71]">¡Predicción generada exitosamente!</h3>
+          <p class="text-sm text-green-700 mt-1">El modelo ha procesado los datos y generado la predicción</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-[#0077B6] to-[#90E0EF] rounded-xl shadow-lg p-8 text-white text-center">
+      <h3 class="text-lg opacity-90 mb-2">Predicción de Consumo - Julio 2026</h3>
+      <div class="text-6xl font-bold mb-2">53,500 m³</div>
+      <div class="flex items-center justify-center gap-2 text-sm opacity-90">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+        </svg>
+        <span>Confianza del modelo: 92%</span>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Predicciones para los Próximos Meses</h3>
+      <div class="h-80 bg-gray-50 rounded-lg flex items-center justify-center">
+        <p class="text-gray-500">Gráfico de Predicciones (Integrar Chart.js)</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Niveles de Confianza</h3>
+      <div class="space-y-3">
+        <div *ngFor="let item of predictionData">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm text-gray-700">{{item.mes}}</span>
+            <span class="text-sm font-medium text-gray-800">{{item.confianza}}%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-[#2ECC71] h-2 rounded-full transition-all" [style.width.%]="item.confianza"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Métricas de Error del Modelo</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+        <div class="text-center p-4 bg-blue-50 rounded-lg">
+          <p class="text-sm text-gray-600">MAE</p>
+          <p class="text-2xl font-bold text-[#0077B6]">850 m³</p>
+          <p class="text-xs text-gray-500 mt-1">Error Medio Absoluto</p>
+        </div>
+        <div class="text-center p-4 bg-blue-50 rounded-lg">
+          <p class="text-sm text-gray-600">MSE</p>
+          <p class="text-2xl font-bold text-[#0077B6]">980K</p>
+          <p class="text-xs text-gray-500 mt-1">Error Cuadrático Medio</p>
+        </div>
+        <div class="text-center p-4 bg-blue-50 rounded-lg">
+          <p class="text-sm text-gray-600">RMSE</p>
+          <p class="text-2xl font-bold text-[#0077B6]">990 m³</p>
+          <p class="text-xs text-gray-500 mt-1">Raíz del Error Cuadrático</p>
+        </div>
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+          <p class="text-sm text-gray-600">R² Score</p>
+          <p class="text-2xl font-bold text-[#2ECC71]">0.94</p>
+          <p class="text-xs text-gray-500 mt-1">Coeficiente de Determinación</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Información del Modelo</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div><span class="text-gray-600">Algoritmo:</span><span class="font-medium text-gray-800 ml-2">XGBoost (Extreme Gradient Boosting)</span></div>
+        <div><span class="text-gray-600">Variables de entrada:</span><span class="font-medium text-gray-800 ml-2">Temperatura, Población</span></div>
+        <div><span class="text-gray-600">Precisión promedio:</span><span class="font-medium text-gray-800 ml-2">94%</span></div>
+      </div>
+    </div>
+  </div>
+</div>

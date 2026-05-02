@@ -7,7 +7,7 @@ const routes: Routes = [
     path: 'app',
     loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule)
   }, 
-  { path: '**', redirectTo: 'app' },
+  { path: '**', redirectTo: 'app/not-found' },
 ];
 
 @NgModule({

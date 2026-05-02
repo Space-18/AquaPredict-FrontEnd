@@ -12,6 +12,6 @@ export class AnonGuard implements CanActivate {
     if (!this.authService.isAuthenticated()) {
       return true;
     }
-    return this.router.createUrlTree(['/app/dashboard'], {relativeTo: this.route});
+    return this.router.createUrlTree(['/app/'], {relativeTo: this.route});
   }
 }

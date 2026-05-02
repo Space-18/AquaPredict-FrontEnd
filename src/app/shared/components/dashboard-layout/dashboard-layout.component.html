@@ -1,0 +1,70 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Sidebar -->
+  <aside [ngClass]="['fixed top-0 left-0 z-40 h-screen transition-transform bg-[#0077B6] w-64', sidebarOpen ? 'translate-x-0' : '-translate-x-full']">
+    <div class="h-full px-3 py-4 overflow-y-auto">
+      <div class="flex items-center mb-8 px-3">
+        <svg class="h-8 w-8 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        </svg>
+        <div>
+          <h1 class="text-white text-xl font-semibold">AquaPredict</h1>
+          <p class="text-[#90E0EF] text-xs">Ventanilla</p>
+        </div>
+      </div>
+
+      <ul class="space-y-2">
+        <li *ngFor="let item of filteredMenuItems">
+          <a
+            [routerLink]="item.path"
+            [ngClass]="['flex items-center p-3 rounded-lg transition-colors', isActive(item.path) ? 'bg-[#90E0EF] text-[#0077B6]' : 'text-white hover:bg-[#048ABF]']"
+          >
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" [innerHTML]="getIcon(item.icon)"></svg>
+            <span>{{item.label}}</span>
+          </a>
+        </li>
+      </ul>
+
+      <button
+        (click)="handleLogout()"
+        class="flex items-center w-full p-3 mt-8 text-white rounded-lg hover:bg-[#048ABF] transition-colors"
+      >
+        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+        </svg>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div [ngClass]="[sidebarOpen ? 'ml-64' : 'ml-0', 'transition-all']">
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+      <div class="flex items-center justify-between px-6 py-4">
+        <button (click)="toggleSidebar()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <svg *ngIf="sidebarOpen" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+          <svg *ngIf="!sidebarOpen" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <p class="text-sm font-medium text-gray-700">{{ currentUser.fullName }}</p>
+            <p class="text-xs text-gray-500">{{ currentUser.correo }}</p>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-[#0077B6] flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="p-6">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

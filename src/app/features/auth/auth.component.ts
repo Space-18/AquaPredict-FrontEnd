@@ -11,7 +11,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  public user?: models.auth.LoginRequest;
+  public user: models.auth.LoginRequest = { usuario: '', password: '' };
+  showPassword = false;
   public showLoading: boolean = false;
   private subscriptions: Subscription[] = [];
 
@@ -27,14 +28,17 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('Iniciar Sesión - AquaPredict');
   }
 
-  async onLogin() {
-    console.log(this.user)
-    if (this.user?.username == null || this.user.password == null) {
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  onLogin() {
+    if (this.user?.usuario == null || this.user.password == null) {
       this.alertService.error('Error Login', 'Username o password vacías!');
       return;
     }
     this.showLoading = true;
-    await this.authService.login(this.user).subscribe({
+    this.authService.login(this.user).subscribe({
       next: async (response) => {
         // let objPayload = JSON.parse(atob(response.jwt.split(".")[1]))
         // console.log("username-" + objPayload.iss)
@@ -42,16 +46,22 @@ export class AuthComponent implements OnInit, OnDestroy {
         // console.log("tiempo de expiracion-" + new Date(objPayload.exp * 1000))
         // console.log("Id-" + objPayload.userId)
 
-        this.authService.setToken(response.jwt);
+        this.authService.setToken(response.token);
+
+        const jsonFromToken = JSON.parse(atob(response.token.split(".")[1]));
+
+        response.user = jsonFromToken;
+        response.expiresIn = jsonFromToken.exp * 1000; // Convert to milliseconds
 
         // this.authService.guardarUsuario(this.user);
         // console.log("usuario>>>>>>>>>>>>>>>",this.user);
+        console.log(response);
 
 
         // swal.fire('Login', `Hola ${this.user.email}, has iniciado sesión con éxito!`, 'success');
-        this.alertService.success('Login', `Hola ${response.user.username}, has iniciado sesión con éxito!`);
+        this.alertService.success('Login', `Hola ${response.user.fullName}, has iniciado sesión con éxito!`);
         this.showLoading = false;
-        this.router.navigateByUrl('/app/dashboard');
+        this.router.navigate(['app']);
       },
       error: (err) => {
         if (err.status == 401) {

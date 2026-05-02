@@ -1,1 +1,114 @@
-<p>dashboard works!</p>
+<div class="space-y-6">
+  <div>
+    <h1 class="text-3xl font-semibold text-gray-800">Dashboard</h1>
+    <p class="text-gray-600 mt-1">Monitoreo y predicción del consumo de agua en Ventanilla</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#0077B6]">
+      <svg class="w-8 h-8 text-[#0077B6] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="text-sm text-gray-600">Consumo Actual</p>
+      <p class="text-2xl font-bold text-gray-800">52,000 m³</p>
+      <p class="text-xs text-[#2ECC71] mt-1">+4% vs mes anterior</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#90E0EF]">
+      <svg class="w-8 h-8 text-[#90E0EF] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+      </svg>
+      <p class="text-sm text-gray-600">Predicción Próxima</p>
+      <p class="text-2xl font-bold text-gray-800">51,800 m³</p>
+      <p class="text-xs text-gray-500 mt-1">Julio 2026</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#2ECC71]">
+      <svg class="w-8 h-8 text-[#2ECC71] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+      </svg>
+      <p class="text-sm text-gray-600">MAE</p>
+      <p class="text-2xl font-bold text-gray-800">850 m³</p>
+      <p class="text-xs text-gray-500 mt-1">Error Medio Absoluto</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#0077B6]">
+      <svg class="w-8 h-8 text-[#0077B6] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+      </svg>
+      <p class="text-sm text-gray-600">MSE</p>
+      <p class="text-2xl font-bold text-gray-800">980,000</p>
+      <p class="text-xs text-gray-500 mt-1">Error Cuadrático Medio</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#2ECC71]">
+      <svg class="w-8 h-8 text-[#2ECC71] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+      </svg>
+      <p class="text-sm text-gray-600">R² Score</p>
+      <p class="text-2xl font-bold text-gray-800">0.94</p>
+      <p class="text-xs text-[#2ECC71] mt-1">Excelente precisión</p>
+    </div>
+  </div>
+
+  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg">
+    <div class="flex items-start">
+      <svg class="w-6 h-6 text-yellow-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+      </svg>
+      <div>
+        <h3 class="font-semibold text-yellow-800">Alerta de Escasez Hídrica</h3>
+        <p class="text-sm text-yellow-700 mt-1">Se prevé un incremento del 8% en el consumo para los próximos 2 meses. Se recomienda implementar medidas de ahorro.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-md p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Consumo Histórico vs Predicción</h3>
+    <div class="h-80 bg-gray-50 rounded-lg flex items-center justify-center">
+      <p class="text-gray-500">Gráfico de Consumo (Integrar Chart.js o ng2-charts)</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Temperatura vs Consumo</h3>
+      <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+        <p class="text-gray-500">Gráfico de Dispersión</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Población vs Consumo</h3>
+      <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+        <p class="text-gray-500">Gráfico de Dispersión</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-gradient-to-br from-[#0077B6] to-[#048ABF] rounded-xl shadow-md p-6 text-white">
+      <svg class="w-10 h-10 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+      </svg>
+      <p class="text-sm opacity-90">Población Total</p>
+      <p class="text-3xl font-bold">392,000</p>
+      <p class="text-xs opacity-75 mt-1">habitantes</p>
+    </div>
+    <div class="bg-gradient-to-br from-[#2ECC71] to-[#27AE60] rounded-xl shadow-md p-6 text-white">
+      <svg class="w-10 h-10 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="text-sm opacity-90">Consumo per cápita</p>
+      <p class="text-3xl font-bold">132.65</p>
+      <p class="text-xs opacity-75 mt-1">litros/día</p>
+    </div>
+    <div class="bg-gradient-to-br from-[#90E0EF] to-[#0077B6] rounded-xl shadow-md p-6 text-white">
+      <svg class="w-10 h-10 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+      </svg>
+      <p class="text-sm opacity-90">Precisión del Modelo</p>
+      <p class="text-3xl font-bold">94%</p>
+      <p class="text-xs opacity-75 mt-1">R² Score</p>
+    </div>
+  </div>
+</div>

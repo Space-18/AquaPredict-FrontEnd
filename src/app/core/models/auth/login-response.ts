@@ -1,11 +1,10 @@
 export interface LoginResponse {
-  jwt: string;
+  token: string;
   user: {
     id: number;
-    username: string;
+    fullName: string;
     email: string;
-    role: string;
+    role: number;
   };
   expiresIn?: number;
-  refreshToken?: string;
 }
