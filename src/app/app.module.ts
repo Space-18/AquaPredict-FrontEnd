@@ -10,24 +10,26 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { AuthInterceptor } from './core/interceptors/auth/auth.interceptor';
 import { ErrorHandlerInterceptor } from './core/interceptors/error-handler/error-handler.interceptor';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent,
-    HighlightDirective,
-    LoaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppComponent,
+    CommonModule,
+    SidebarComponent,
+    HighlightDirective,
+    LoaderComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }

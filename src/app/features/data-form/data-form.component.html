@@ -4,82 +4,58 @@
     <p class="text-gray-600 mt-1">Registra los datos para el modelo de predicción</p>
   </div>
 
-  <div *ngIf="saved" class="mb-6 bg-green-50 border-l-4 border-[#2ECC71] p-4 rounded-lg">
-    <div class="flex items-center">
-      <svg class="w-6 h-6 text-[#2ECC71] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-      </svg>
-      <p class="text-[#2ECC71] font-medium">¡Datos guardados exitosamente!</p>
+  @if (saved) {
+    <div class="mb-6 bg-green-50 border-l-4 border-[#2ECC71] p-4 rounded-lg">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-[#2ECC71] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <p class="text-[#2ECC71] font-medium">¡Datos guardados exitosamente!</p>
+      </div>
     </div>
-  </div>
+  }
 
   <div class="bg-white rounded-xl shadow-md p-8">
     <form (ngSubmit)="onSubmit()" class="space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="md:col-span-2">
           <label class="block text-sm text-gray-700 mb-2">Fecha (Año-Mes) <span class="text-red-500">*</span></label>
-          <input
-            type="month"
-            [(ngModel)]="formData.fecha"
-            name="fecha"
+          <input type="month" [(ngModel)]="formData.fecha" name="fecha"
             [ngClass]="['w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6] focus:border-transparent', errors['fecha'] ? 'border-red-500' : 'border-gray-300']"
-            required
-          />
-          <p *ngIf="errors['fecha']" class="text-red-500 text-sm mt-1">{{errors['fecha']}}</p>
+            required />
+          @if (errors['fecha']) { <p class="text-red-500 text-sm mt-1">{{errors['fecha']}}</p> }
         </div>
 
         <div>
           <label class="block text-sm text-gray-700 mb-2">Temperatura Máxima (°C) <span class="text-red-500">*</span></label>
-          <input
-            type="number"
-            [(ngModel)]="formData.tempMax"
-            name="tempMax"
-            step="0.1"
+          <input type="number" [(ngModel)]="formData.tempMax" name="tempMax" step="0.1"
             [ngClass]="['w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6] focus:border-transparent', errors['tempMax'] ? 'border-red-500' : 'border-gray-300']"
-            placeholder="Ej: 28.5"
-            required
-          />
-          <p *ngIf="errors['tempMax']" class="text-red-500 text-sm mt-1">{{errors['tempMax']}}</p>
+            placeholder="Ej: 28.5" required />
+          @if (errors['tempMax']) { <p class="text-red-500 text-sm mt-1">{{errors['tempMax']}}</p> }
         </div>
 
         <div>
           <label class="block text-sm text-gray-700 mb-2">Temperatura Mínima (°C) <span class="text-red-500">*</span></label>
-          <input
-            type="number"
-            [(ngModel)]="formData.tempMin"
-            name="tempMin"
-            step="0.1"
+          <input type="number" [(ngModel)]="formData.tempMin" name="tempMin" step="0.1"
             [ngClass]="['w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6] focus:border-transparent', errors['tempMin'] ? 'border-red-500' : 'border-gray-300']"
-            placeholder="Ej: 18.2"
-            required
-          />
-          <p *ngIf="errors['tempMin']" class="text-red-500 text-sm mt-1">{{errors['tempMin']}}</p>
+            placeholder="Ej: 18.2" required />
+          @if (errors['tempMin']) { <p class="text-red-500 text-sm mt-1">{{errors['tempMin']}}</p> }
         </div>
 
         <div>
           <label class="block text-sm text-gray-700 mb-2">Población (habitantes) <span class="text-red-500">*</span></label>
-          <input
-            type="number"
-            [(ngModel)]="formData.population"
-            name="population"
+          <input type="number" [(ngModel)]="formData.population" name="population"
             [ngClass]="['w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6] focus:border-transparent', errors['population'] ? 'border-red-500' : 'border-gray-300']"
-            placeholder="Ej: 392000"
-            required
-          />
-          <p *ngIf="errors['population']" class="text-red-500 text-sm mt-1">{{errors['population']}}</p>
+            placeholder="Ej: 392000" required />
+          @if (errors['population']) { <p class="text-red-500 text-sm mt-1">{{errors['population']}}</p> }
         </div>
 
         <div>
           <label class="block text-sm text-gray-700 mb-2">Consumo de Agua (m³) <span class="text-red-500">*</span></label>
-          <input
-            type="number"
-            [(ngModel)]="formData.waterConsumption"
-            name="waterConsumption"
+          <input type="number" [(ngModel)]="formData.waterConsumption" name="waterConsumption"
             [ngClass]="['w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6] focus:border-transparent', errors['waterConsumption'] ? 'border-red-500' : 'border-gray-300']"
-            placeholder="Ej: 52000"
-            required
-          />
-          <p *ngIf="errors['waterConsumption']" class="text-red-500 text-sm mt-1">{{errors['waterConsumption']}}</p>
+            placeholder="Ej: 52000" required />
+          @if (errors['waterConsumption']) { <p class="text-red-500 text-sm mt-1">{{errors['waterConsumption']}}</p> }
         </div>
       </div>
 
@@ -109,12 +85,8 @@
       <h3 class="text-xl font-semibold text-gray-800">Vista Previa de Datos</h3>
       <div class="flex items-center gap-3">
         <span class="text-sm text-gray-500">Total: {{totalRecords}} registros</span>
-        <select
-          [ngModel]="pageSize"
-          (ngModelChange)="onPageSizeChange($event)"
-          name="pageSizeData"
-          class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#0077B6] text-gray-700"
-        >
+        <select [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)" name="pageSizeData"
+          class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#0077B6] text-gray-700">
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="15">15</option>
@@ -124,163 +96,130 @@
       </div>
     </div>
 
-    <!-- Loading -->
-    <div *ngIf="loading" class="flex justify-center py-8">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0077B6]"></div>
-    </div>
-
-    <div *ngIf="!loading">
-      <!-- Empty state -->
-      <div *ngIf="records.length === 0" class="text-center py-8 text-gray-500">
-        <svg class="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-        <p>Sin registros</p>
+    @if (loading) {
+      <div class="flex justify-center py-8">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0077B6]"></div>
       </div>
-
-      <!-- Table -->
-      <div *ngIf="records.length > 0" class="overflow-x-auto">
-        <table class="w-full">
-          <thead class="bg-gray-50">
-            <tr>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Año</th>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Mes</th>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Temp. Máx (°C)</th>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Temp. Mín (°C)</th>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Población</th>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Consumo (m³)</th>
-              <th class="px-4 py-3 text-left text-sm text-gray-700">Registrado</th>
-              <th class="px-4 py-3 text-center text-sm text-gray-700">Acciones</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-            <tr *ngFor="let item of records" class="hover:bg-gray-50">
-              <td class="px-4 py-3 text-sm text-gray-800">{{item.anio}}</td>
-              <td class="px-4 py-3 text-sm text-gray-800">{{formatMes(item.mes)}}</td>
-              <td class="px-4 py-3 text-sm text-gray-800">{{item.temp_max}}</td>
-              <td class="px-4 py-3 text-sm text-gray-800">{{item.temp_min}}</td>
-              <td class="px-4 py-3 text-sm text-gray-800">{{item.population | number}}</td>
-              <td class="px-4 py-3 text-sm text-gray-800">{{item.water_consumption | number}}</td>
-              <td class="px-4 py-3 text-sm text-gray-500">{{item.created_at | date:'dd/MM/yyyy HH:mm'}}</td>
-              <td class="px-4 py-3">
-                <div class="flex items-center justify-center gap-2">
-                  <button (click)="handleEditOpen(item)" class="p-1.5 text-[#0077B6] hover:bg-[#90E0EF]/20 rounded-lg transition-colors" title="Editar">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                    </svg>
-                  </button>
-                  <button (click)="handleDelete(item.id)" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Eliminar">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Pagination -->
-      <div *ngIf="totalPages > 1" class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-        <p class="text-sm text-gray-600">
-          Página {{pageNumber}} de {{totalPages}}
-        </p>
-        <div class="flex items-center gap-1">
-          <button
-            (click)="goToPage(pageNumber - 1)"
-            [disabled]="pageNumber === 1"
-            class="px-3 py-1 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-          >
-            ←
-          </button>
-          <ng-container *ngFor="let p of pages">
-            <button
-              *ngIf="p === 1 || p === totalPages || (p >= pageNumber - 2 && p <= pageNumber + 2)"
-              (click)="goToPage(p)"
-              [ngClass]="['px-3 py-1 text-sm rounded-lg border transition-colors', p === pageNumber ? 'bg-[#0077B6] text-white border-[#0077B6]' : 'border-gray-300 text-gray-600 hover:bg-gray-50']"
-            >
-              {{p}}
-            </button>
-          </ng-container>
-          <button
-            (click)="goToPage(pageNumber + 1)"
-            [disabled]="pageNumber === totalPages"
-            class="px-3 py-1 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-          >
-            →
-          </button>
+    } @else {
+      @if (records.length === 0) {
+        <div class="text-center py-8 text-gray-500">
+          <svg class="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <p>Sin registros</p>
         </div>
-      </div>
-    </div>
+      } @else {
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Año</th>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Mes</th>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Temp. Máx (°C)</th>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Temp. Mín (°C)</th>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Población</th>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Consumo (m³)</th>
+                <th class="px-4 py-3 text-left text-sm text-gray-700">Registrado</th>
+                <th class="px-4 py-3 text-center text-sm text-gray-700">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              @for (item of records; track item.id) {
+                <tr class="hover:bg-gray-50">
+                  <td class="px-4 py-3 text-sm text-gray-800">{{item.anio}}</td>
+                  <td class="px-4 py-3 text-sm text-gray-800">{{formatMes(item.mes)}}</td>
+                  <td class="px-4 py-3 text-sm text-gray-800">{{item.temp_max}}</td>
+                  <td class="px-4 py-3 text-sm text-gray-800">{{item.temp_min}}</td>
+                  <td class="px-4 py-3 text-sm text-gray-800">{{item.population | number}}</td>
+                  <td class="px-4 py-3 text-sm text-gray-800">{{item.water_consumption | number}}</td>
+                  <td class="px-4 py-3 text-sm text-gray-500">{{item.created_at | date:'dd/MM/yyyy HH:mm'}}</td>
+                  <td class="px-4 py-3">
+                    <div class="flex items-center justify-center gap-2">
+                      <button (click)="handleEditOpen(item)" class="p-1.5 text-[#0077B6] hover:bg-[#90E0EF]/20 rounded-lg transition-colors" title="Editar">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                      </button>
+                      <button (click)="handleDelete(item.id)" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Eliminar">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+
+      @if (totalPages > 1) {
+        <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+          <p class="text-sm text-gray-600">Página {{pageNumber}} de {{totalPages}}</p>
+          <div class="flex items-center gap-1">
+            <button (click)="goToPage(pageNumber - 1)" [disabled]="pageNumber === 1"
+              class="px-3 py-1 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">←</button>
+            @for (p of pages; track p) {
+              @if (p === 1 || p === totalPages || (p >= pageNumber - 2 && p <= pageNumber + 2)) {
+                <button (click)="goToPage(p)"
+                  [ngClass]="['px-3 py-1 text-sm rounded-lg border transition-colors', p === pageNumber ? 'bg-[#0077B6] text-white border-[#0077B6]' : 'border-gray-300 text-gray-600 hover:bg-gray-50']">{{p}}</button>
+              }
+            }
+            <button (click)="goToPage(pageNumber + 1)" [disabled]="pageNumber === totalPages"
+              class="px-3 py-1 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">→</button>
+          </div>
+        </div>
+      }
+    }
   </div>
 
   <!-- Modal Editar Registro -->
-  <div *ngIf="showEditModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg">
-      <div class="flex justify-between items-center p-6 border-b">
-        <div>
-          <h2 class="text-xl font-semibold text-gray-800">Editar Registro</h2>
-          <p class="text-sm text-gray-500 mt-0.5" *ngIf="editingRecord">
-            {{editingRecord.anio}} - {{formatMes(editingRecord.mes)}}
-          </p>
+  @if (showEditModal) {
+    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+        <div class="flex justify-between items-center p-6 border-b">
+          <div>
+            <h2 class="text-xl font-semibold text-gray-800">Editar Registro</h2>
+            @if (editingRecord) {
+              <p class="text-sm text-gray-500 mt-0.5">{{editingRecord.anio}} - {{formatMes(editingRecord.mes)}}</p>
+            }
+          </div>
+          <button (click)="showEditModal = false" class="text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
         </div>
-        <button (click)="showEditModal = false" class="text-gray-400 hover:text-gray-600 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+        <form (ngSubmit)="handleEditSave()" class="p-6 space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm text-gray-700 mb-2">Temperatura Máxima (°C) <span class="text-red-500">*</span></label>
+              <input type="number" [(ngModel)]="editFormData.tempMax" name="editTempMax" step="0.1"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]" required />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-700 mb-2">Temperatura Mínima (°C) <span class="text-red-500">*</span></label>
+              <input type="number" [(ngModel)]="editFormData.tempMin" name="editTempMin" step="0.1"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]" required />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-700 mb-2">Población <span class="text-red-500">*</span></label>
+              <input type="number" [(ngModel)]="editFormData.population" name="editPopulation"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]" required />
+            </div>
+            <div>
+              <label class="block text-sm text-gray-700 mb-2">Consumo de Agua (m³) <span class="text-red-500">*</span></label>
+              <input type="number" [(ngModel)]="editFormData.waterConsumption" name="editWaterConsumption"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]" required />
+            </div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" (click)="showEditModal = false" class="flex-1 px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">Cancelar</button>
+            <button type="submit" class="flex-1 px-4 py-3 bg-[#0077B6] text-white rounded-lg hover:bg-[#005F8F] transition-colors">Guardar</button>
+          </div>
+        </form>
       </div>
-      <form (ngSubmit)="handleEditSave()" class="p-6 space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm text-gray-700 mb-2">Temperatura Máxima (°C) <span class="text-red-500">*</span></label>
-            <input
-              type="number"
-              [(ngModel)]="editFormData.tempMax"
-              name="editTempMax"
-              step="0.1"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]"
-              required
-            />
-          </div>
-          <div>
-            <label class="block text-sm text-gray-700 mb-2">Temperatura Mínima (°C) <span class="text-red-500">*</span></label>
-            <input
-              type="number"
-              [(ngModel)]="editFormData.tempMin"
-              name="editTempMin"
-              step="0.1"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]"
-              required
-            />
-          </div>
-          <div>
-            <label class="block text-sm text-gray-700 mb-2">Población <span class="text-red-500">*</span></label>
-            <input
-              type="number"
-              [(ngModel)]="editFormData.population"
-              name="editPopulation"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]"
-              required
-            />
-          </div>
-          <div>
-            <label class="block text-sm text-gray-700 mb-2">Consumo de Agua (m³) <span class="text-red-500">*</span></label>
-            <input
-              type="number"
-              [(ngModel)]="editFormData.waterConsumption"
-              name="editWaterConsumption"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0077B6]"
-              required
-            />
-          </div>
-        </div>
-        <div class="flex gap-3 pt-2">
-          <button type="button" (click)="showEditModal = false" class="flex-1 px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">Cancelar</button>
-          <button type="submit" class="flex-1 px-4 py-3 bg-[#0077B6] text-white rounded-lg hover:bg-[#005F8F] transition-colors">Guardar</button>
-        </div>
-      </form>
     </div>
-  </div>
+  }
 </div>

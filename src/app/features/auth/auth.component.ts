@@ -1,12 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as models from '../../core/models';
 import * as services from '../../core/services';
 import { Title } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
+  standalone: true,
+  imports: [FormsModule, RouterLink],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })

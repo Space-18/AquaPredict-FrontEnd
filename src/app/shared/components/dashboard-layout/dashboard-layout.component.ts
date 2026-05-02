@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
@@ -16,6 +16,8 @@ const ALL_ROLES = [RoleTypeEnum.ADMIN, RoleTypeEnum.ANALYST, RoleTypeEnum.OPERAT
 
 @Component({
   selector: 'app-dashboard-layout',
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './dashboard-layout.component.html',
   styleUrls: ['./dashboard-layout.component.scss']
 })

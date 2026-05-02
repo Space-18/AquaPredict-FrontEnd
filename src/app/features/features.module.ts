@@ -17,6 +17,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    FeaturesRoutingModule,
     AuthComponent,
     DashboardComponent,
     ReportsComponent,
@@ -28,11 +33,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DashboardLayoutComponent,
     UnauthorizedComponent,
     NotFoundComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FeaturesRoutingModule,
   ]
 })
 export class FeaturesModule { }

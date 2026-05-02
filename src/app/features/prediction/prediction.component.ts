@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { PredictionItem } from '../../core/models/water-data/water-data.model';
 import { PredictionService } from '../../core/services/prediction.service';
 
 @Component({
   selector: 'app-prediction',
+  standalone: true,
+  imports: [NgClass],
   templateUrl: './prediction.component.html',
   styleUrls: ['./prediction.component.scss']
 })

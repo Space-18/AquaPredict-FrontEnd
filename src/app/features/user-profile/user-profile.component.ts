@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile, UpdateUserCommand } from '../../core/models/user/user.model';
 import { UserService } from '../../core/services/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })

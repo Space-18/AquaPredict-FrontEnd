@@ -3,6 +3,8 @@ import { DashboardService } from '../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
+  imports: [],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

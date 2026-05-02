@@ -36,9 +36,11 @@
           Información Personal
         </h3>
 
-        <div *ngIf="savedProfile" class="mb-4 bg-green-50 border-l-4 border-[#2ECC71] p-4 rounded-lg">
-          <p class="text-[#2ECC71] text-sm">¡Información actualizada exitosamente!</p>
-        </div>
+        @if (savedProfile) {
+          <div class="mb-4 bg-green-50 border-l-4 border-[#2ECC71] p-4 rounded-lg">
+            <p class="text-[#2ECC71] text-sm">¡Información actualizada exitosamente!</p>
+          </div>
+        }
 
         <form (ngSubmit)="onProfileSubmit()" class="space-y-4">
           <div>

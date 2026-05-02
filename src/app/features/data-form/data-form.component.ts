@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgClass, DecimalPipe, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { WaterDataForm, WaterDataRecord, RegistrarDataCommand, UpdateDataAquaCommand } from '../../core/models/water-data/water-data.model';
 import * as services from '../../core/services';
 
-
 @Component({
   selector: 'app-data-form',
+  standalone: true,
+  imports: [FormsModule, NgClass, DecimalPipe, DatePipe],
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.scss']
 })

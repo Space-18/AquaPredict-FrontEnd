@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {
   User, UserFormData, AccessControlFormData,
   UpdateUserCommand
@@ -8,6 +10,8 @@ import { AlertService, AuthService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-user-management',
+  standalone: true,
+  imports: [FormsModule, NgClass],
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.scss']
 })

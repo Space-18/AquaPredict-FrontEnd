@@ -1,10 +1,9 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]'
+  selector: '[appHighlight]',
+  standalone: true
 })
 export class HighlightDirective {
-
-  constructor() { }
-
+  constructor() {}
 }
